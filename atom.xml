@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh_cn">
+    <title type="text">inSec</title>
+    <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
+    <updated>2023-02-23T02:09:00&#43;08:00</updated>
+    <id>https://hobby1999.github.io/</id>
+    <link rel="alternate" type="text/html" href="https://hobby1999.github.io/" />
+    <link rel="self" type="application/atom&#43;xml" href="https://hobby1999.github.io/atom.xml" />
+    <author>
+            <name>inSec</name>
+            <uri>https://hobby1999.github.io/</uri>
+            
+                <email>topch3ng@gmail.com</email>
+            </author>
+    <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights>
+    <generator uri="https://gohugo.io/" version="0.110.0">Hugo</generator>
+        <entry>
+            <title type="text">反射的一些分享</title>
+            <link rel="alternate" type="text/html" href="https://hobby1999.github.io/posts/%E5%8F%8D%E5%B0%84%E7%9A%84%E4%B8%80%E4%BA%9B%E5%88%86%E4%BA%AB/" />
+            <id>https://hobby1999.github.io/posts/%E5%8F%8D%E5%B0%84%E7%9A%84%E4%B8%80%E4%BA%9B%E5%88%86%E4%BA%AB/</id>
+            <updated>2023-02-23T02:00:11&#43;08:00</updated>
+            <published>2023-02-18T16:02:43&#43;08:00</published>
+            <author>
+                    <name>inSec</name>
+                    <uri>https://hobby1999.github.io/</uri>
+                    <email>topch3ng@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Java反射 Java 反射的介绍 Java反射是Java语言中最重要的特性，可以说，Java语…</summary>
+            
+                <content type="html">&lt;h1 id=&#34;java反射&#34;&gt;Java反射&lt;/h1&gt;
+&lt;h2 id=&#34;java-反射的介绍&#34;&gt;Java 反射的介绍&lt;/h2&gt;
+&lt;p&gt;Java反射是Java语言中最重要的特性，可以说，Java语言的实现就是依靠了反射机制，从Class的加载，到Java虚拟机（Jvm、Dalvik、ART）的运行原理都强依赖于Java反射。&lt;/p&gt;
+&lt;p&gt;在经典教科书《Java核心技术 卷Ⅰ》中，对反射给出了如下定义：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;em&gt;能够分析类的能力的程序称为反射(reflective)&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;也就是说Java程序中你可以对任何已知的、未知的类进行分析、调用，而这种能力是由通过在程序运行期间，Java运行时系统（Jvm Runtime）始终为所有对象维护一个运行时类标识符实现的，通过这个标识符，JVM可以跟踪每个对象所属的类，然后虚拟机利用这些信息正确的执行方法&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;注：您可以暂时将Java程序中的类想象成一个巨大的“数据库”，最初始的“Class”这个数据库中建立了许多张其他class的表，这些表中的id就是类标识符，反射就是通过这些id去获取到类相应的构造方法(Constructor)、成员变量（Field）、成员方法（Method）及类自身（Class），但当对Java虚拟机的深入了解，您必须摒弃这个想法，因为它并不严谨。
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;java-反射在工程中的应用&#34;&gt;Java 反射在工程中的应用&lt;/h2&gt;
+&lt;p&gt;反射在任何Java程序中都有非常重要的应用:&lt;/p&gt;
+&lt;p&gt;1、在Java工程中，可以动态的修改、访问其他类的一些变量来达到一些效果，比如检查某个类的成员变量是否合法。&lt;/p&gt;
+&lt;p&gt;2、在Web应用中，可以选择不同的数据库驱动器，如果当一个Web应用需要使用到多个数据库驱动器，那么可以在需要使用时在进行动态加载，反射功能能够很好的做到这一点。&lt;/p&gt;
+&lt;p&gt;3、在Android应用中，Android系统拥有庞大的API,但某些API被标识符标记上仅系统使用或不推荐应用使用，那么这个时候可以利用反射的方法调取这些API以供开发者使用。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Java反射的应用包括但不仅限于上面3点，许多稀奇古怪但便捷的操作都是通过反射完成，这使得Java工程在运行时获得了巨大的便利性
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;java-反射的例子&#34;&gt;Java 反射的例子&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;下面我们将通过实际的代码展示Java反射的便利性，本文提供三种场景，与上文一一对应。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;1、普通反射应用，获取一个类的成员变量、成员方法
+首先先创建一个叫做Person的类（很经典，是不是？）&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public class Person {
+    private static int age;
+    private String name;
+    private static final String secret = &amp;#34;A secret,if you know java reflect,you can know it&amp;#34;;
+    public String noSecret = &amp;#34;no secret here&amp;#34;;
+    public Person() {
+
+    }
+    public static void SayHello(String personName) {
+        System.out.printf(&amp;#34;%s Say hello to you \n&amp;#34;, personName);
+    }
+
+    private static String GetPersonInfo(String personName, int age) {
+        return String.format(&amp;#34;%s is %d years old \n&amp;#34;, personName, age);
+    }
+
+    private void eat(String name) {
+        System.out.printf(&amp;#34;%s eating... \n&amp;#34;,name);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        Person.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+            
+            
+            
+            
+            
+                
+                    
+                
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">First_blog</title>
+            <link rel="alternate" type="text/html" href="https://hobby1999.github.io/posts/first_blog/" />
+            <id>https://hobby1999.github.io/posts/first_blog/</id>
+            <updated>2023-02-18T15:56:16&#43;08:00</updated>
+            <published>2023-02-18T14:57:59&#43;08:00</published>
+            <author>
+                    <name>inSec</name>
+                    <uri>https://hobby1999.github.io/</uri>
+                    <email>topch3ng@gmail.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">第一篇博客 自我介绍 我是一个网络安全的从业者，目前工作方向是移动端安全，目前属于初级阶…</summary>
+            
+                <content type="html">&lt;h1 id=&#34;第一篇博客&#34;&gt;第一篇博客&lt;/h1&gt;
+&lt;h2 id=&#34;自我介绍&#34;&gt;自我介绍&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;我是一个网络安全的从业者，目前工作方向是移动端安全，目前属于初级阶段，仍需要更多的学习
+本博客将记录自己的一些学习过程，其中包括一些tryhackme、hackthebox的打靶记录，除此之
+外我还将分享一些移动端的编程技巧（Java方向）。
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                
+                    
+                
+            
+        </entry>
+    
+</feed>
