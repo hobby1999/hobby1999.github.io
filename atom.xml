@@ -3,8 +3,8 @@
 
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh_cn">
     <title type="text">inSec</title>
-    <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2023-02-24T00:05:14&#43;08:00</updated>
+    <subtitle type="html">Welcome to Insec&#39;s World.</subtitle>
+    <updated>2023-02-24T00:11:11&#43;08:00</updated>
     <id>https://hobby1999.github.io/</id>
     <link rel="alternate" type="text/html" href="https://hobby1999.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://hobby1999.github.io/atom.xml" />
@@ -14,7 +14,7 @@
             
                 <email>topch3ng@gmail.com</email>
             </author>
-    <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights>
+    <rights>@inSec</rights>
     <generator uri="https://gohugo.io/" version="0.110.0">Hugo</generator>
         <entry>
             <title type="text">反射的一些分享</title>
@@ -27,7 +27,7 @@
                     <uri>https://hobby1999.github.io/</uri>
                     <email>topch3ng@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">Java反射 Java 反射的介绍 Java反射是Java语言中最重要的特性，可以说，Java语…</summary>
+            <rights>@inSec</rights><summary type="html">Java反射 Java 反射的介绍 Java反射是Java语言中最重要的特性，可以说，Java语</summary>
             
                 <content type="html">&lt;h1 id=&#34;java反射&#34;&gt;Java反射&lt;/h1&gt;
 &lt;h2 id=&#34;java-反射的介绍&#34;&gt;Java 反射的介绍&lt;/h2&gt;
@@ -190,7 +190,7 @@ public class Main {
                     <uri>https://hobby1999.github.io/</uri>
                     <email>topch3ng@gmail.com</email>
                     </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</rights><summary type="html">第一篇博客 自我介绍 我是一个网络安全的从业者，目前工作方向是移动端安全，目前属于初级阶…</summary>
+            <rights>@inSec</rights><summary type="html">第一篇博客 自我介绍 我是一个网络安全的从业者，目前工作方向是移动端安全，目前属于初级阶</summary>
             
                 <content type="html">&lt;h1 id=&#34;第一篇博客&#34;&gt;第一篇博客&lt;/h1&gt;
 &lt;h2 id=&#34;自我介绍&#34;&gt;自我介绍&lt;/h2&gt;

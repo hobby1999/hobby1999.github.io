@@ -9,7 +9,7 @@
     <channel>
         <title>inSec</title>
         <link>https://hobby1999.github.io/</link>
-        <description>MemE is a powerful and highly customizable GoHugo theme for personal blogs.</description>
+        <description>Welcome to Insec&#39;s World.</description>
         <generator>Hugo 0.110.0 https://gohugo.io/</generator>
         
             <language>zh_cn</language>
@@ -21,9 +21,9 @@
             <webMaster>topch3ng@gmail.com (inSec)</webMaster>
         
         
-            <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+            <copyright>@inSec</copyright>
         
-        <lastBuildDate>Fri, 24 Feb 2023 00:05:14 &#43;0800</lastBuildDate>
+        <lastBuildDate>Fri, 24 Feb 2023 00:11:11 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://hobby1999.github.io/rss.xml" />
         
@@ -36,7 +36,7 @@
                 
                     <author>topch3ng@gmail.com (inSec)</author>
                 
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+                <copyright>@inSec</copyright>
                 
                     <description>&lt;h1 id=&#34;java反射&#34;&gt;Java反射&lt;/h1&gt;
 &lt;h2 id=&#34;java-反射的介绍&#34;&gt;Java 反射的介绍&lt;/h2&gt;
@@ -196,7 +196,7 @@ public class Main {
                 
                     <author>topch3ng@gmail.com (inSec)</author>
                 
-                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)</copyright>
+                <copyright>@inSec</copyright>
                 
                     <description>&lt;h1 id=&#34;第一篇博客&#34;&gt;第一篇博客&lt;/h1&gt;
 &lt;h2 id=&#34;自我介绍&#34;&gt;自我介绍&lt;/h2&gt;
