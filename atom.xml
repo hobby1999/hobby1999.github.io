@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh_cn">
     <title type="text">inSec</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2023-02-23T02:22:02&#43;08:00</updated>
+    <updated>2023-02-24T00:05:14&#43;08:00</updated>
     <id>https://hobby1999.github.io/</id>
     <link rel="alternate" type="text/html" href="https://hobby1999.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://hobby1999.github.io/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">反射的一些分享</title>
             <link rel="alternate" type="text/html" href="https://hobby1999.github.io/posts/%E5%8F%8D%E5%B0%84%E7%9A%84%E4%B8%80%E4%BA%9B%E5%88%86%E4%BA%AB/" />
             <id>https://hobby1999.github.io/posts/%E5%8F%8D%E5%B0%84%E7%9A%84%E4%B8%80%E4%BA%9B%E5%88%86%E4%BA%AB/</id>
-            <updated>2023-02-23T02:21:57&#43;08:00</updated>
+            <updated>2023-02-24T00:05:05&#43;08:00</updated>
             <published>2023-02-18T16:02:43&#43;08:00</published>
             <author>
                     <name>inSec</name>
@@ -86,7 +86,86 @@
 
 
 }
-&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在这个类当中，可以看到无参构造方法、Getter/Setter、静态私有成员变量、静态私有成员方法、私有成员方法和公开的成员方法。&lt;/p&gt;
+&lt;p&gt;为什么要写一个那么看起来有点啰嗦的类呢？&lt;/p&gt;
+&lt;p&gt;因为在Java中，在类中使用不同的修饰符修饰的变量或方法，需要反射的步骤也不同，下面我会给出反射的代码进行一一的解释&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class Main {
+    public static void main(String[] args) throws NoSuchFieldException, NoSuchMethodException {
+        //正常调用
+        Person Jack = new Person();
+        Jack.setAge(10);
+        Jack.setName(&amp;#34;Jack&amp;#34;);
+        Jack.SayHello(Jack.getName());
+
+        //反射调用
+
+
+        try {
+            Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;#34;Person&amp;#34;);
+
+            //lower than java 8
+            //clazz.newInstance();
+
+            // java 11+ getDeclaredConstructor更严谨
+            Object object = clazz.getDeclaredConstructor().newInstance();
+            if (object instanceof Person) { //这是个重要的技巧，会在后面很有用处
+                //获取并更改成员变量
+                Field fNoSecret = object.getClass().getField(&amp;#34;noSecret&amp;#34;);
+                System.out.println(fNoSecret.get(object));
+                fNoSecret.set(object, &amp;#34;Secret Modify By Java Reflect&amp;#34;);
+                System.out.println(fNoSecret.get(object));
+
+                //获取私有静态成员变量 或 私有成员变量
+                Field fSecret = object.getClass().getDeclaredField(&amp;#34;secret&amp;#34;);
+                fSecret.setAccessible(true);
+                System.out.println(fSecret.get(null));
+
+                //获取私有成员方法
+                Method mEat = object.getClass().getDeclaredMethod(&amp;#34;eat&amp;#34;, String.class);
+                mEat.setAccessible(true);
+                mEat.invoke(object, &amp;#34;Tina&amp;#34;);
+
+                //获取私有静态成员方法
+                Method mGetInfo = clazz.getDeclaredMethod(&amp;#34;GetPersonInfo&amp;#34;,
+                        String.class,
+                        int.class);
+                mGetInfo.setAccessible(true);
+                String personInfo = (String) mGetInfo.invoke(object, &amp;#34;Tom&amp;#34;, 12);
+                System.out.println(personInfo);
+
+                //直接创建对象
+                Person reflect = (Person) object;
+                reflect.setName(&amp;#34;Hacker&amp;#34;);
+                reflect.setAge(999);
+                System.out.println(reflect.getName());
+                System.out.println(reflect.getAge());
+            }
+        } catch (Throwable throwable) {
+            System.out.println(throwable);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;首先来看看如果是一个类的正常调用流程是怎么样的&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;        //正常调用
+        Person Jack = new Person();
+        Jack.setAge(10);
+        Jack.setName(&amp;#34;Jack&amp;#34;);
+        Jack.SayHello(Jack.getName());
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在上面的代码中，是正常的调用，我称之为正向调用，首先声明一个类，然后用New方法将这个Jack实例化出来，然后再用set方法将Jack这个“人实例”的名字和名字赋值，然后直接使用&amp;quot;.&amp;ldquo;调用了它的成员方法“SayHello”，一切都是这么的丝滑、这么的理所应当&lt;/p&gt;
+&lt;p&gt;那么如果想玩点骚操作呢？&lt;/p&gt;
+&lt;p&gt;这个时候往下看&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;        Class&amp;lt;?&amp;gt; clazz = Class.forName(&amp;#34;Person&amp;#34;);
+        Object object = clazz.getDeclaredConstructor().newInstance();
+        ...
+        Field fNoSecret = object.getClass().getField(&amp;#34;noSecret&amp;#34;);
+        System.out.println(fNoSecret.get(object));
+        fNoSecret.set(object, &amp;#34;Secret Modify By Java Reflect&amp;#34;);
+        System.out.println(fNoSecret.get(object));
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在这段代码中，首先获取了类对象，这里使用的是最常见的一个方法，就是Class.forName()方法。使用这个方法是最大的利用了反射的动态性，只要知道了一个类的全类名，并且保证这个类被加载，就能获取这个类对象（在类没加载的情况下，通过代码分析的手段，使用Classloader手动加载，也可以反射）&lt;/p&gt;
+</content>
             
             
             
