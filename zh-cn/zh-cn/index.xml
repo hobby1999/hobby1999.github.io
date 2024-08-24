@@ -4,15 +4,22 @@
     <title>Zh-Cns on Way To Reverse</title>
     <link>https://hobby1999.github.io/zh-cn/zh-cn/</link>
     <description>Recent content in Zh-Cns on Way To Reverse</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 18 Jan 2024 00:50:06 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 25 Aug 2024 01:57:18 +0800</lastBuildDate>
     <atom:link href="https://hobby1999.github.io/zh-cn/zh-cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Gothook</title>
+      <link>https://hobby1999.github.io/zh-cn/zh-cn/post/gothook/</link>
+      <pubDate>Sun, 25 Aug 2024 01:57:18 +0800</pubDate>
+      <guid>https://hobby1999.github.io/zh-cn/zh-cn/post/gothook/</guid>
+      <description>什么是hook？ </description>
+    </item>
+    <item>
       <title>自我介绍</title>
-      <link>https://hobby1999.github.io/zh-cn/zh-cn/post/my-article/</link>
+      <link>https://hobby1999.github.io/zh-cn/zh-cn/post/intro/</link>
       <pubDate>Thu, 18 Jan 2024 00:50:06 +0800</pubDate>
-      <guid>https://hobby1999.github.io/zh-cn/zh-cn/post/my-article/</guid>
+      <guid>https://hobby1999.github.io/zh-cn/zh-cn/post/intro/</guid>
       <description>这是一片简短的自我介绍 我是一名在职的移动安全工程师，这是我的博客，我会分享我对移动应用程序（Android/Harmony）逆向的过程、一些关于编程方面的体会、源码阅读的理解，让我们一起踏上逆向之路&#xA;Let&amp;rsquo;s Go</description>
     </item>
   </channel>

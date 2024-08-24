@@ -2,8 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://hobby1999.github.io/zh-cn/zh-cn/post/gothook/</loc>
+    <lastmod>2024-08-25T01:57:18+08:00</lastmod>
+  </url><url>
     <loc>https://hobby1999.github.io/zh-cn/</loc>
-    <lastmod>2024-01-18T00:50:06+08:00</lastmod>
+    <lastmod>2024-08-25T01:57:18+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -16,9 +19,9 @@
                 />
   </url><url>
     <loc>https://hobby1999.github.io/zh-cn/zh-cn/</loc>
-    <lastmod>2024-01-18T00:50:06+08:00</lastmod>
+    <lastmod>2024-08-25T01:57:18+08:00</lastmod>
   </url><url>
-    <loc>https://hobby1999.github.io/zh-cn/zh-cn/post/my-article/</loc>
+    <loc>https://hobby1999.github.io/zh-cn/zh-cn/post/intro/</loc>
     <lastmod>2024-01-18T00:50:06+08:00</lastmod>
   </url><url>
     <loc>https://hobby1999.github.io/zh-cn/categories/</loc>
